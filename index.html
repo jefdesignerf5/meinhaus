@@ -1,0 +1,1643 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mein Haus Churrascaria | 22 anos de tradição</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Palette */
+            --marrom-escuro: #0F0800;
+            --bege-claro: #FAF5EF;
+            --branco: #FFFFFF;
+            --dourado: #C9A84C;
+            --marrom-medio: #1A0E04;
+            --quase-preto: #0A0602;
+            --cinza-quente: #8A9070;
+
+            /* Typography */
+            --font-playfair: 'Playfair Display', serif;
+            --font-cormorant: 'Cormorant Garamond', serif;
+            --font-jost: 'Jost', sans-serif;
+        }
+
+        /* GreatPages Breakout */
+        .mh-page-breakout {
+            width: 100vw !important;
+            max-width: 100vw !important;
+            position: relative !important;
+            left: 50% !important;
+            right: 50% !important;
+            margin-left: -50vw !important;
+            margin-right: -50vw !important;
+            overflow-x: hidden !important;
+            background: var(--branco);
+            display: block !important;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-jost);
+            color: var(--marrom-escuro);
+            background-color: var(--branco);
+            line-height: 1.6;
+            font-size: 18px;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-playfair);
+            font-weight: 400;
+            line-height: 1.1;
+        }
+
+        .eyebrow {
+            font-family: var(--font-jost);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--dourado);
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .btn-dourado {
+            background-color: var(--dourado);
+            color: var(--marrom-escuro);
+            font-family: var(--font-jost);
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 16px 36px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .btn-dourado:hover {
+            background-color: #B8973B;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(201, 168, 76, 0.25);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ANIMATIONS */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1), transform 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* SECTION 1 - HERO */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 24px 0;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            background: transparent;
+        }
+
+        .navbar.scrolled {
+            background: rgba(15, 8, 0, 0.95);
+            padding: 16px 0;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+        
+        .nav-logo:hover {
+            transform: scale(1.02);
+        }
+
+        .nav-logo-title {
+            font-family: var(--font-playfair);
+            color: var(--branco);
+            font-size: 30px;
+            line-height: 1;
+        }
+
+        .nav-logo-sub {
+            font-family: var(--font-jost);
+            color: var(--dourado);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            margin-top: 4px;
+        }
+
+        .hero {
+            height: 100vh;
+            background-color: var(--marrom-escuro);
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+            animation: float 20s ease-in-out infinite;
+            transform-origin: center;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, var(--marrom-escuro) 0%, rgba(15,8,0,0) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            width: 55%;
+            padding-right: 40px;
+        }
+
+        .hero-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .hero-eyebrow .line {
+            width: 48px;
+            height: 1px;
+            background-color: var(--dourado);
+        }
+
+        .hero h1 {
+            color: var(--branco);
+            font-size: 64px;
+            margin-bottom: 32px;
+            line-height: 1.05;
+        }
+
+        .hero h1 span {
+            color: var(--dourado);
+            display: block;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            margin-bottom: 40px;
+        }
+
+        .btn-ghost {
+            color: var(--branco);
+            font-family: var(--font-jost);
+            font-size: 16px;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            padding-bottom: 4px;
+            transition: all 0.3s;
+        }
+
+        .btn-ghost:hover {
+            border-bottom-color: var(--branco);
+            transform: translateY(-2px);
+        }
+
+        .hero-reviews {
+            color: var(--branco);
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .hero-reviews:hover {
+            opacity: 1;
+        }
+
+        .hero-reviews span {
+            color: var(--dourado);
+            letter-spacing: 2px;
+            font-size: 18px;
+        }
+
+        .hero-bottom-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            border-top: 0.5px solid rgba(201, 168, 76, 0.1);
+            background: rgba(15, 8, 0, 0.5);
+            backdrop-filter: blur(12px);
+            z-index: 10;
+        }
+
+        .hero-bottom-bar .container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .hero-stat {
+            padding: 28px 24px;
+            border-right: 0.5px solid rgba(201, 168, 76, 0.15);
+            transition: background 0.3s ease;
+        }
+        
+        .hero-stat:hover {
+            background: rgba(255,255,255,0.03);
+        }
+
+        .hero-stat:last-child {
+            border-right: none;
+        }
+
+        .stat-label {
+            color: var(--dourado);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .stat-label svg {
+            width: 14px;
+            height: 14px;
+            fill: var(--dourado);
+        }
+
+        .stat-value {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+        }
+
+        /* SECTION 2 - AUTORIDADE */
+        .s-autoridade {
+            padding: 100px 0;
+            background-color: var(--branco);
+        }
+
+        .autoridade-top {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-bottom: 80px;
+        }
+
+        .autoridade-title {
+            position: relative;
+        }
+
+        .autoridade-title::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background-color: var(--dourado);
+        }
+
+        .autoridade-title h2 {
+            font-size: 48px;
+            color: var(--marrom-escuro);
+        }
+
+        .autoridade-title h2 span {
+            color: var(--dourado);
+        }
+
+        .autoridade-text {
+            color: var(--cinza-quente);
+            font-weight: 300;
+            text-align: right;
+            font-size: 18px;
+            display: flex;
+            align-items: flex-end;
+            line-height: 1.8;
+        }
+
+        .historia-bloco {
+            background-color: var(--bege-claro);
+            border-radius: 8px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s;
+        }
+        
+        .historia-bloco:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+        }
+
+        .historia-img {
+            background-color: #2A1608;
+            position: relative;
+            min-height: 450px;
+            background-image: url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .badge-desde {
+            position: absolute;
+            bottom: 32px;
+            left: 32px;
+            background: var(--dourado);
+            color: var(--marrom-escuro);
+            padding: 10px 20px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .historia-content {
+            padding: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .historia-content h3 {
+            font-size: 28px;
+            margin: 20px 0 28px;
+        }
+
+        .historia-content p {
+            font-weight: 300;
+            margin-bottom: 40px;
+            color: #4A4A4A;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .assinatura {
+            font-family: var(--font-cormorant);
+            font-style: italic;
+            color: var(--dourado);
+            font-size: 26px;
+        }
+
+        /* SECTION 3 - VÍDEO */
+        .s-video {
+            background-color: var(--marrom-escuro);
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .video-header {
+            margin-bottom: 50px;
+        }
+
+        .s-video .eyebrow {
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .s-video h2 {
+            color: var(--branco);
+            font-size: 44px;
+            margin-bottom: 16px;
+        }
+
+        .s-video .subtitle {
+            color: rgba(255,255,255,0.45);
+            font-weight: 300;
+            font-size: 20px;
+        }
+
+        .video-player {
+            max-width: 800px;
+            margin: 0 auto 80px;
+            border: 1px solid rgba(201, 168, 76, 0.25);
+            border-radius: 8px;
+            position: relative;
+            aspect-ratio: 16/9;
+            background-color: #1E0E04;
+            background-image: linear-gradient(45deg, transparent 49%, rgba(201, 168, 76, 0.03) 49%, rgba(201, 168, 76, 0.03) 51%, transparent 51%);
+            background-size: 12px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s;
+        }
+        
+        .video-player:hover {
+            transform: scale(1.02);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 40px rgba(201, 168, 76, 0.1);
+        }
+        
+        .video-player::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1544148103-0773bf10d330?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80') center/cover;
+            opacity: 0.4;
+            transition: opacity 0.5s ease;
+        }
+        
+        .video-player:hover::before {
+            opacity: 0.3;
+        }
+
+        .play-btn {
+            position: relative;
+            z-index: 2;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 1px solid rgba(201, 168, 76, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .video-player:hover .play-btn {
+            transform: scale(1.1);
+            background: rgba(201, 168, 76, 0.1);
+        }
+
+        .play-btn-inner {
+            width: 70px;
+            height: 70px;
+            background-color: var(--dourado);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .play-triangle {
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 15px solid var(--marrom-escuro);
+            margin-left: 5px;
+        }
+
+        .play-label {
+            position: relative;
+            z-index: 2;
+            color: rgba(255,255,255,0.45);
+            font-size: 13px;
+            letter-spacing: 1.5px;
+        }
+
+        .video-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(15, 8, 0, 0.85);
+            padding: 16px 32px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 15px;
+            color: rgba(255,255,255,0.7);
+            z-index: 2;
+        }
+
+        .reviews {
+            border-top: 1px solid rgba(201, 168, 76, 0.15);
+            padding-top: 60px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        
+        .review {
+            transition: transform 0.4s ease;
+        }
+        
+        .review:hover {
+            transform: translateY(-5px);
+        }
+
+        .review-stars {
+            color: var(--dourado);
+            font-size: 15px;
+            margin-bottom: 16px;
+            letter-spacing: 3px;
+        }
+
+        .review-text {
+            font-family: var(--font-cormorant);
+            font-style: italic;
+            color: rgba(255,255,255,0.6);
+            font-size: 18px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .review-author {
+            color: var(--dourado);
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .review-source {
+            color: rgba(255,255,255,0.3);
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        /* SECTION 4 - CARDÁPIO */
+        .s-cardapio {
+            background-color: var(--bege-claro);
+            padding: 100px 0;
+        }
+
+        .cardapio-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+        
+        .cardapio-eyebrow-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .cardapio-eyebrow-wrapper .line {
+            width: 40px;
+            height: 1px;
+            background: var(--dourado);
+        }
+
+        .s-cardapio h2 {
+            font-size: 46px;
+            margin-bottom: 16px;
+        }
+        
+        .ornament {
+            color: var(--dourado);
+            font-size: 24px;
+            letter-spacing: 6px;
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        .s-cardapio .subtitle {
+            color: #666;
+            font-weight: 300;
+            font-size: 20px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .card-menu {
+            background: var(--branco);
+            border-top: 3px solid var(--dourado);
+            padding: 50px 40px;
+            border-radius: 4px;
+        }
+
+        .card-menu h3 {
+            color: var(--dourado);
+            font-family: var(--font-jost);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            margin-bottom: 30px;
+        }
+
+        .menu-list {
+            list-style: none;
+        }
+
+        .menu-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: var(--marrom-escuro);
+        }
+
+        .menu-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--dourado);
+        }
+
+        .menu-detail {
+            display: block;
+            font-size: 13px;
+            color: #888;
+            margin-top: 4px;
+        }
+
+        .precos-bloco {
+            background-color: var(--marrom-escuro);
+            border-radius: 8px;
+            padding: 60px;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+        }
+
+        .precos-bloco h3 {
+            color: var(--dourado);
+            font-size: 26px;
+            margin-bottom: 50px;
+        }
+
+        .precos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border: 1px solid rgba(255,255,255,0.08);
+            margin-bottom: 40px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .preco-col {
+            padding: 40px 30px;
+            border-right: 1px solid rgba(255,255,255,0.08);
+            transition: background 0.3s;
+        }
+        
+        .preco-col:hover {
+            background: rgba(255,255,255,0.02);
+        }
+
+        .preco-col:last-child {
+            border-right: none;
+        }
+
+        .preco-col.highlight {
+            background-color: #1A0C04;
+        }
+        
+        .preco-col.highlight:hover {
+            background-color: #241105;
+        }
+
+        .dia {
+            color: var(--branco);
+            font-size: 18px;
+            margin-bottom: 20px;
+            opacity: 0.85;
+        }
+
+        .valor {
+            color: var(--branco);
+            font-size: 36px;
+            font-family: var(--font-playfair);
+            margin-bottom: 12px;
+        }
+        
+        .valor-riscado {
+            font-size: 18px;
+            text-decoration: line-through;
+            color: rgba(255,255,255,0.3);
+            margin-right: 10px;
+            font-family: var(--font-jost);
+        }
+
+        .valor-crianca {
+            color: var(--dourado);
+            font-size: 14px;
+        }
+
+        .precos-nota {
+            color: rgba(255,255,255,0.25);
+            font-size: 14px;
+            margin-bottom: 40px;
+        }
+
+        /* SECTION 5 - GALERIA + HORÁRIOS */
+        .s-galeria {
+            background-color: var(--branco);
+            padding-top: 100px;
+        }
+
+        .galeria-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .galeria-header h2 {
+            font-size: 44px;
+            margin-top: 20px;
+        }
+
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            grid-template-rows: 300px 300px;
+            gap: 8px;
+        }
+
+        .g-item {
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            background-color: #222;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        
+        .g-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        
+        .g-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .g-item-large {
+            grid-row: span 2;
+        }
+
+        .g-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px 30px;
+            background: linear-gradient(to top, rgba(15,8,0,0.9) 0%, transparent 100%);
+            transform: translateY(10px);
+            opacity: 0.9;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+        
+        .g-item:hover .g-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .g-label {
+            color: rgba(255,255,255,0.8);
+            font-size: 13px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .g-sublabel {
+            color: rgba(255,255,255,0.4);
+            font-family: var(--font-cormorant);
+            font-style: italic;
+            font-size: 18px;
+            margin-top: 8px;
+        }
+
+        .faixa-horarios {
+            background-color: var(--bege-claro);
+        }
+
+        .horarios-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .horario-col {
+            padding: 60px;
+            border-right: 0.5px solid #E0D8C8;
+        }
+
+        .horario-col:last-child {
+            border-right: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .horario-label {
+            color: var(--dourado);
+            font-size: 11px;
+            letter-spacing: 2.5px;
+            margin-bottom: 30px;
+        }
+
+        .horario-linha {
+            display: flex;
+            justify-content: space-between;
+            padding: 16px 0;
+            border-bottom: 0.5px solid rgba(0,0,0,0.06);
+            font-size: 16px;
+        }
+        
+        .horario-linha:last-child {
+            border-bottom: none;
+        }
+
+        .horario-cta-text {
+            font-family: var(--font-playfair);
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .horario-nota {
+            font-size: 13px;
+            color: #888;
+            margin-top: 16px;
+        }
+
+        /* SECTION 6 - LOCALIZAÇÃO */
+        .s-localizacao {
+            background-color: var(--bege-claro);
+            padding: 100px 0;
+        }
+
+        .local-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .local-mapa h2 {
+            font-size: 42px;
+            margin: 20px 0 40px;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 350px;
+            border-radius: 6px;
+            overflow: hidden;
+            background-color: #E0D4C4;
+            margin-bottom: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.06);
+        }
+
+        .link-dourado {
+            color: var(--dourado);
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .link-dourado:hover {
+            transform: translateX(5px);
+        }
+
+        .local-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-block {
+            padding: 30px 0;
+            border-bottom: 0.5px solid #E0D4C4;
+        }
+
+        .info-block:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: var(--dourado);
+            font-size: 11px;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+        }
+
+        .info-valor {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        .info-detalhe {
+            font-size: 15px;
+            font-weight: 300;
+            color: #777;
+        }
+
+        /* SECTION 7 - CTA + POP-UP + FOOTER */
+        .s-cta {
+            background-color: var(--marrom-escuro);
+            padding: 100px 0;
+        }
+
+        .cta-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .cta-text h2 {
+            color: var(--branco);
+            font-size: 54px;
+            margin: 20px 0;
+        }
+
+        .cta-text p {
+            color: rgba(255,255,255,0.45);
+            font-size: 22px;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        @keyframes pulse-dot {
+            0% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.7); }
+            70% { box-shadow: 0 0 0 8px rgba(201, 168, 76, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0); }
+        }
+
+        .badge-urgencia {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            border: 0.5px solid rgba(201, 168, 76, 0.25);
+            padding: 10px 20px;
+            border-radius: 3px;
+            margin-bottom: 50px;
+        }
+        
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--dourado);
+            border-radius: 50%;
+            animation: pulse-dot 2s infinite;
+        }
+
+        .badge-urgencia span {
+            color: var(--branco);
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            font-weight: 500;
+        }
+
+        .cta-nota {
+            color: rgba(255,255,255,0.25);
+            font-size: 15px;
+            margin-top: 20px;
+            display: block;
+        }
+
+        .popup-preview {
+            border: 0.5px solid rgba(201, 168, 76, 0.25);
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: var(--branco);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.3);
+        }
+
+        .popup-header {
+            background-color: var(--marrom-medio);
+            padding: 40px;
+            position: relative;
+        }
+        
+        .popup-close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            color: rgba(255,255,255,0.25);
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .popup-close:hover {
+            color: var(--branco);
+        }
+
+        .popup-pretag {
+            color: var(--dourado);
+            font-size: 11px;
+            letter-spacing: 2.5px;
+            margin-bottom: 12px;
+        }
+
+        .popup-header h3 {
+            color: var(--branco);
+            font-size: 34px;
+            margin-bottom: 12px;
+        }
+
+        .popup-header p {
+            color: rgba(255,255,255,0.45);
+            font-size: 18px;
+            font-weight: 300;
+        }
+
+        .popup-body {
+            padding: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 28px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 10px;
+            letter-spacing: 1.5px;
+        }
+
+        .form-input {
+            width: 100%;
+            border: 0.5px solid #E0D8C8;
+            padding: 16px 20px;
+            font-family: var(--font-jost);
+            font-size: 16px;
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--dourado);
+            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.1);
+        }
+
+        .btn-full {
+            width: 100%;
+            text-align: center;
+        }
+
+        .form-privacidade {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: #999;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        .footer {
+            background-color: var(--quase-preto);
+            padding: 50px 0;
+            border-top: 1px solid rgba(255,255,255,0.03);
+        }
+
+        .footer .container {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-family: var(--font-playfair);
+            color: var(--branco);
+            font-size: 26px;
+        }
+
+        .footer-contato {
+            text-align: center;
+            color: rgba(255,255,255,0.4);
+            font-size: 15px;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        .footer-copy {
+            text-align: right;
+            color: rgba(255,255,255,0.2);
+            font-size: 14px;
+        }
+
+        /* Responsiveness (Basic) */
+        @media (max-width: 992px) {
+            .hero-content { width: 100%; padding: 0; text-align: center; }
+            .hero-bg { width: 100%; opacity: 0.4; }
+            .hero-bg::after { background: rgba(15,8,0,0.6); }
+            .hero h1 { font-size: 50px; }
+            .hero-actions { justify-content: center; }
+            .hero-bottom-bar .container { grid-template-columns: 1fr 1fr; }
+            
+            .autoridade-top, .historia-bloco, .cta-grid, .local-grid { grid-template-columns: 1fr; gap: 40px; }
+            .autoridade-text { text-align: left; }
+            
+            .cards-grid, .precos-grid, .reviews, .horarios-grid { grid-template-columns: 1fr; gap: 30px;}
+            .horario-col { border-right: none; border-bottom: 0.5px solid #E0D8C8; padding: 40px 20px;}
+            
+            .galeria-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+            .g-item-large { grid-row: auto; height: 350px; }
+            .g-item { height: 300px; }
+            
+            .footer .container { grid-template-columns: 1fr; gap: 30px; text-align: center; }
+            .footer-copy { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="mh-page-breakout">
+        
+        <!-- SECTION 1 - HERO -->
+        <nav class="navbar" id="navbar">
+            <div class="container">
+                <a href="#" class="nav-logo">
+                    <span class="nav-logo-title">MEIN HAUS</span>
+                    <span class="nav-logo-sub">CHURRASCARIA</span>
+                </a>
+                <a href="#reserva" class="btn-dourado">RESERVAR MESA</a>
+            </div>
+        </nav>
+
+        <section class="hero">
+            <div class="hero-bg"></div>
+            <div class="container" style="position: relative; z-index: 2; width: 100%;">
+                <div class="hero-content reveal">
+                    <div class="hero-eyebrow">
+                        <span class="eyebrow">SÃO JOSÉ · SC</span>
+                        <div class="line"></div>
+                    </div>
+                    <h1>22 anos de tradição na <span>brasa.</span></h1>
+                    
+                    <div class="hero-actions">
+                        <a href="#reserva" class="btn-dourado">GARANTIR RESERVA</a>
+                        <a href="#cardapio" class="btn-ghost">Ver cardápio</a>
+                    </div>
+                    
+                    <div class="hero-reviews">
+                        <span>★★★★★</span> 4.9 · 750+ avaliações no Google
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-bottom-bar reveal delay-2">
+                <div class="container">
+                    <div class="hero-stat">
+                        <div class="stat-label">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+                            Especialidade
+                        </div>
+                        <div class="stat-value">Espeto corrido</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="stat-label">
+                            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/><path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                            Horário
+                        </div>
+                        <div class="stat-value">Almoço e jantar</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="stat-label">
+                            <svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>
+                            Estacionamento
+                        </div>
+                        <div class="stat-value">Próprio</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="stat-label">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                            Valor
+                        </div>
+                        <div class="stat-value">Gratuito</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2 - AUTORIDADE -->
+        <section class="s-autoridade">
+            <div class="container">
+                <div class="autoridade-top reveal">
+                    <div class="autoridade-title">
+                        <h2>Referência em churrasco há <span>22 anos.</span></h2>
+                    </div>
+                    <div class="autoridade-text">
+                        <p>Nossa história começou em São José no ano de 2002, com o propósito de oferecer o mais autêntico e suculento churrasco da região, unindo qualidade excepcional e atendimento acolhedor.</p>
+                    </div>
+                </div>
+
+                <div class="historia-bloco reveal delay-1">
+                    <div class="historia-img">
+                        <div class="badge-desde">DESDE 2002</div>
+                    </div>
+                    <div class="historia-content">
+                        <span class="eyebrow">NOSSA HISTÓRIA</span>
+                        <h3>Tradição de família.</h3>
+                        <p>Mais de duas décadas aprimorando a arte de assar carnes. Um ambiente criado para celebrar os bons momentos da vida ao redor de uma mesa farta e cortes selecionados.</p>
+                        <span class="assinatura">— Família Mein Haus</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3 - VÍDEO -->
+        <section class="s-video">
+            <div class="container">
+                <div class="video-header reveal">
+                    <span class="eyebrow">CONHEÇA A MEIN HAUS</span>
+                    <h2>Veja antes de vir.</h2>
+                    <p class="subtitle">Um pouco do nosso ambiente e da nossa paixão pelo churrasco.</p>
+                </div>
+
+                <div class="video-player reveal delay-1">
+                    <div class="play-btn">
+                        <div class="play-btn-inner">
+                            <div class="play-triangle"></div>
+                        </div>
+                    </div>
+                    <span class="play-label">ASSISTIR VÍDEO INSTITUCIONAL</span>
+                    
+                    <div class="video-bar">
+                        <span>Mein Haus Churrascaria · São José, SC</span>
+                        <span>3:24</span>
+                    </div>
+                </div>
+
+                <div class="reviews">
+                    <div class="review reveal delay-1">
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-text">"O melhor espeto corrido da região. Carnes no ponto perfeito e buffet completíssimo. Ambiente muito familiar."</p>
+                        <span class="review-author">CARLOS EDUARDO</span>
+                        <div class="review-source">Google · São José</div>
+                    </div>
+                    <div class="review reveal delay-2">
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-text">"Tradição que não decepciona. A picanha derrete na boca e o atendimento é sempre de primeira qualidade."</p>
+                        <span class="review-author">MARIANA SILVA</span>
+                        <div class="review-source">Google · Florianópolis</div>
+                    </div>
+                    <div class="review reveal delay-3">
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-text">"Local perfeito para almoço de domingo em família. Estacionamento fácil e comida espetacular."</p>
+                        <span class="review-author">ROBERTO ALVES</span>
+                        <div class="review-source">Google · Palhoça</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4 - CARDÁPIO -->
+        <section class="s-cardapio" id="cardapio">
+            <div class="container">
+                <div class="cardapio-header reveal">
+                    <div class="cardapio-eyebrow-wrapper">
+                        <div class="line"></div>
+                        <span class="eyebrow">ESPETO CORRIDO MEIN HAUS</span>
+                        <div class="line"></div>
+                    </div>
+                    <h2>Tudo incluso. Sem surpresas.</h2>
+                    <div class="ornament">· · ·</div>
+                    <p class="subtitle">Uma experiência gastronômica completa à sua disposição.</p>
+                </div>
+
+                <div class="cards-grid">
+                    <div class="card-menu reveal delay-1">
+                        <h3>CARNES NA BRASA</h3>
+                        <ul class="menu-list">
+                            <li>Picanha maturada
+                                <span class="menu-detail">corte premium, ponto perfeito</span>
+                            </li>
+                            <li>Costela rústica 12h
+                                <span class="menu-detail">cozimento lento no bafo</span>
+                            </li>
+                            <li>Fraldinha e maminha</li>
+                            <li>Linguiça, frango, cordeiro</li>
+                            <li>+ cortes da estação</li>
+                        </ul>
+                    </div>
+                    <div class="card-menu reveal delay-2">
+                        <h3>BUFFET COMPLETO</h3>
+                        <ul class="menu-list">
+                            <li>Saladas variadas (15+)</li>
+                            <li>Antepastos e frios</li>
+                            <li>Arroz, farofa, vinagrete</li>
+                            <li>Mandioca, polenta, pão de alho</li>
+                            <li>Pão de queijo artesanal</li>
+                        </ul>
+                    </div>
+                    <div class="card-menu reveal delay-3">
+                        <h3>PARA FINALIZAR</h3>
+                        <ul class="menu-list">
+                            <li>Sobremesas artesanais</li>
+                            <li>Petit Gâteau</li>
+                            <li>Pudim de leite</li>
+                            <li>Mousse de chocolate</li>
+                            <li>Carta de vinhos</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="precos-bloco reveal delay-1">
+                    <h3>VALORES POR PESSOA · ALMOÇO E JANTAR</h3>
+                    <div class="precos-grid">
+                        <div class="preco-col">
+                            <div class="dia">Segunda e Terça</div>
+                            <div class="valor"><span class="valor-riscado">R$139,90</span> R$79,90</div>
+                            <div class="valor-crianca">crianças R$39,95</div>
+                        </div>
+                        <div class="preco-col highlight">
+                            <div class="dia">Quarta a Sexta</div>
+                            <div class="valor">R$99,90</div>
+                            <div class="valor-crianca">crianças R$49,95</div>
+                        </div>
+                        <div class="preco-col">
+                            <div class="dia">Sábado e Domingo</div>
+                            <div class="valor">R$139,90 <span style="font-size: 18px; font-family: var(--font-jost);">almoço</span></div>
+                            <div class="valor">R$99,90 <span style="font-size: 18px; font-family: var(--font-jost);">jantar sáb</span></div>
+                            <div class="valor-crianca">crianças R$69,50</div>
+                        </div>
+                    </div>
+                    <div class="precos-nota">Valores promocionais sujeitos a alteração em feriados ou datas especiais.</div>
+                    <a href="#reserva" class="btn-dourado">RESERVAR MINHA MESA</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5 - GALERIA + HORÁRIOS -->
+        <section class="s-galeria">
+            <div class="galeria-header reveal">
+                <span class="eyebrow">AMBIENTE & PRODUTO</span>
+                <h2>Conheça a Mein Haus.</h2>
+            </div>
+
+            <div class="container" style="padding: 0 12px; margin-bottom: -40px; position: relative; z-index: 5;">
+                <div class="galeria-grid">
+                    <div class="g-item g-item-large reveal delay-1">
+                        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Espeto Corrido">
+                        <div class="g-overlay">
+                            <div class="g-label">ESPETO CORRIDO</div>
+                            <div class="g-sublabel">A autêntica tradição gaúcha</div>
+                        </div>
+                    </div>
+                    <div class="g-item reveal delay-2">
+                        <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Picanha Maturada">
+                        <div class="g-overlay">
+                            <div class="g-label">PICANHA MATURADA</div>
+                        </div>
+                    </div>
+                    <div class="g-item reveal delay-3">
+                        <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Salão Principal">
+                        <div class="g-overlay">
+                            <div class="g-label">SALÃO PRINCIPAL</div>
+                        </div>
+                    </div>
+                    <div class="g-item reveal delay-2">
+                        <img src="https://images.unsplash.com/photo-1590846406792-0adc7f928f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Buffet Completo">
+                        <div class="g-overlay">
+                            <div class="g-label">BUFFET COMPLETO</div>
+                        </div>
+                    </div>
+                    <div class="g-item reveal delay-3">
+                        <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Experiência Completa">
+                        <div class="g-overlay">
+                            <div class="g-label">EXPERIÊNCIA COMPLETA</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faixa-horarios reveal" style="padding-top: 100px;">
+                <div class="container">
+                    <div class="horarios-grid">
+                        <div class="horario-col">
+                            <div class="horario-label">HORÁRIOS · SEG A SEX</div>
+                            <div class="horario-linha">
+                                <span>Seg–Ter</span>
+                                <span>11h30–15h · 19h–23h</span>
+                            </div>
+                            <div class="horario-linha">
+                                <span>Qua–Sex</span>
+                                <span>11h30–15h · 19h–23h</span>
+                            </div>
+                        </div>
+                        <div class="horario-col">
+                            <div class="horario-label">HORÁRIOS · FIM DE SEMANA</div>
+                            <div class="horario-linha">
+                                <span>Sábado</span>
+                                <span>11h30–16h · 19h–23h</span>
+                            </div>
+                            <div class="horario-linha">
+                                <span>Domingo</span>
+                                <span>11h30–16h</span>
+                            </div>
+                        </div>
+                        <div class="horario-col">
+                            <div class="horario-cta-text">Estamos abertos e prontos para te receber.</div>
+                            <a href="#reserva" class="btn-dourado" style="text-align: center;">RESERVAR AGORA</a>
+                            <div class="horario-nota">Atendimento via WhatsApp</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6 - LOCALIZAÇÃO -->
+        <section class="s-localizacao">
+            <div class="container">
+                <div class="local-grid">
+                    <div class="local-mapa reveal">
+                        <span class="eyebrow">COMO CHEGAR</span>
+                        <h2>No coração de São José, SC.</h2>
+                        <div class="map-container">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3536.273617300481!2d-48.60454762366113!3d-27.585065976253164!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x952737ed07590d97%3A0xe54e60931d87e074!2sR.%20Papa%20Jo%C3%A3o%20XXIII%2C%2025%20-%20Campinas%2C%20S%C3%A3o%20Jos%C3%A9%20-%20SC%2C%2088101-310!5e0!3m2!1spt-BR!2sbr!4v1714073351234!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                        <a href="https://maps.google.com/?q=R.+Papa+João+XXIII,+25+-+Campinas,+São+José+-+SC" target="_blank" class="link-dourado">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                            Abrir no Google Maps
+                        </a>
+                    </div>
+                    <div class="local-info reveal delay-1">
+                        <div class="info-block">
+                            <div class="info-label">ENDEREÇO</div>
+                            <div class="info-valor">R. Papa João XXIII, 25 · Campinas</div>
+                            <div class="info-detalhe">São José, SC · CEP 88101-310</div>
+                        </div>
+                        <div class="info-block">
+                            <div class="info-label">CONTATO</div>
+                            <div class="info-valor">(48) 99955-8799 · (48) 3261-4739</div>
+                            <div class="info-detalhe">contato@churrascariameinhaus.com.br</div>
+                        </div>
+                        <div class="info-block">
+                            <div class="info-label">HORÁRIOS SEG–SEX</div>
+                            <div class="info-valor">11h30–15h · 19h–23h</div>
+                        </div>
+                        <div class="info-block">
+                            <div class="info-label">HORÁRIOS FIM DE SEMANA</div>
+                            <div class="info-valor">Sáb: 11h30–16h / 19h–23h · Dom: 11h30–16h</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7 - CTA + POP-UP -->
+        <section class="s-cta" id="reserva">
+            <div class="container">
+                <div class="cta-grid">
+                    <div class="cta-text reveal">
+                        <span class="eyebrow">RESERVE SUA MESA</span>
+                        <h2>Garanta seu lugar.</h2>
+                        <p>Confirme sua reserva em menos de 5 minutos.</p>
+                        
+                        <div class="badge-urgencia">
+                            <div class="badge-dot"></div>
+                            <span>RESERVAS ABERTAS PARA ESTE FIM DE SEMANA</span>
+                        </div>
+                        
+                        <br>
+                        <a href="#popup" class="btn-dourado">GARANTIR MINHA RESERVA</a>
+                        <span class="cta-nota">Sem taxa de reserva · Resposta imediata via WhatsApp</span>
+                    </div>
+
+                    <div class="popup-preview reveal delay-1" id="popup">
+                        <div class="popup-header">
+                            <div class="popup-close">×</div>
+                            <div class="popup-pretag">MEIN HAUS CHURRASCARIA</div>
+                            <h3>Quase lá.</h3>
+                            <p>Preencha os dados abaixo para confirmar.</p>
+                        </div>
+                        <div class="popup-body">
+                            <form>
+                                <div class="form-group">
+                                    <label class="form-label">NOME</label>
+                                    <input type="text" class="form-input" placeholder="Seu nome completo">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">WHATSAPP COM DDD</label>
+                                    <input type="tel" class="form-input" placeholder="(48) 99999-9999">
+                                </div>
+                                <button type="button" class="btn-dourado btn-full">CONFIRMAR RESERVA</button>
+                                <div class="form-privacidade">
+                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/></svg>
+                                    Seus dados estão seguros.
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-logo">MEIN HAUS</div>
+                <div class="footer-contato">
+                    R. Papa João XXIII, 25 · Campinas, São José - SC<br>
+                    (48) 99955-8799
+                </div>
+                <div class="footer-copy">
+                    &copy; 2024 Mein Haus Churrascaria.<br>Todos os direitos reservados.
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 80) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for Reveal Animations
+        document.addEventListener("DOMContentLoaded", () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
